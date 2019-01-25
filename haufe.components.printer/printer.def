@@ -1,0 +1,11 @@
+LIBRARY
+
+EXPORTS
+	InitializePrintMonitor2
+	InitializePrintMonitorUI
+	InstallW
+	UninstallW
+	SetJobOptionsA
+	SetJobOptionsW
+	WaitForJob
+	QueryOutputPathW

@@ -1,0 +1,30 @@
+HKEY_LOCAL_MACHINE
+{
+	NoRemove SYSTEM
+	{
+		NoRemove CurrentControlSet
+		{
+			NoRemove Services
+			{
+				NoRemove EventLog
+				{
+					ForceRemove 'Haufe Printer'
+					{
+						val AutoBackupLogFiles = d '0'
+						val MaxSize = d '524288'
+						val Retention = d '604800'
+						val Sources = m 'Haufe Printer'
+
+						'Haufe Printer'
+						{
+							val CategoryCount = d '4'
+							val TypesSupported = d '7'
+							val EventMessageFile = s '%MODULE_RAW%'
+							val CategoryMessageFile = s '%MODULE_RAW%'
+						}
+					}
+				}
+			}
+		}
+	}
+}
