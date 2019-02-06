@@ -5,6 +5,7 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{4361445D-AA7C-4856-83FE-E55BE0FAC9ED}"
 	ProjectSection(SolutionItems) = preProject
+		deploy\haufe.components.printer.props = deploy\haufe.components.printer.props
 		deploy\PrintMonitor.h = deploy\PrintMonitor.h
 		Deploy\PrintMonitor.ps1 = Deploy\PrintMonitor.ps1
 	EndProjectSection

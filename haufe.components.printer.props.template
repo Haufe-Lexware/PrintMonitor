@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	
+  <PropertyGroup>
+		<COMPANY-NAME>COMPANY NAME</COMPANY-NAME>
+		
+		<CPP-DEFINES>
+			COMPANY_NAME="$(COMPANY-NAME)";
+			AMYUNI_LICENCE_COMPANY="";
+			AMYUNI_LICENCE_CODE="";
+		</CPP-DEFINES>
+		
+		<RES-DEFINES>DIALOG_CAPTION=\"$(COMPANY-NAME) PDF-Export\"</RES-DEFINES>
+		
+		<POST-BUILD-COMMAND></POST-BUILD-COMMAND>
+	</PropertyGroup>
+
+  <PropertyGroup Condition="'$(Platform)'=='Win32'">
+    <OutDir>$(SolutionDir)\$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Platform)'=='x64'">
+		<OutDir>$(SolutionDir)\$(Configuration) $(Platform)\</OutDir>
+		<IntDir>$(Configuration) $(Platform)\</IntDir>
+	</PropertyGroup>
+
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<PreprocessorDefinitions>$(CPP-DEFINES);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+		</ClCompile>
+		<ResourceCompile>
+			<PreprocessorDefinitions>$(RES-DEFINES);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+		</ResourceCompile>
+	</ItemDefinitionGroup>
+
+</Project>

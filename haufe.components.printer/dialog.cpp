@@ -45,11 +45,11 @@ LRESULT CDialog::OnSyslink(int idCtrl, LPNMHDR pNMHdr, BOOL &bHandled)
 	case IDC_SYSLINK1:
 		{
 #ifdef _WIN64
-			PCWSTR szPath = L"HKLM\\SOFTWARE\\WOW6432Node\\Lexware\\PrintMonitor";
+			PCWSTR szPath = L"HKLM\\SOFTWARE\\WOW6432Node\\" COMPANY_NAME "\\PrintMonitor";
 #else
 			PCWSTR szPath = Printer::IsWow64Process() ?
-				L"HKLM\\SOFTWARE\\WOW6432Node\\Lexware\\PrintMonitor" :
-				L"HKLM\\SOFTWARE\\Lexware\\PrintMonitor";
+				L"HKLM\\SOFTWARE\\WOW6432Node\\" COMPANY_NAME "\\PrintMonitor" :
+				L"HKLM\\SOFTWARE\\" COMPANY_NAME "\\PrintMonitor";
 #endif
 			Automation::RegEdit(szPath);
 		}
@@ -57,14 +57,14 @@ LRESULT CDialog::OnSyslink(int idCtrl, LPNMHDR pNMHdr, BOOL &bHandled)
 	case IDC_SYSLINK2:
 		{
 #ifdef _WIN64
-			WCHAR szGswin[MAX_PATH] = L"%CommonProgramFiles(x86)%\\Lexware";
+			WCHAR szGswin[MAX_PATH] = L"%CommonProgramFiles(x86)%\\" COMPANY_NAME;
 #else
-			WCHAR szGswin[MAX_PATH] = L"%CommonProgramFiles%\\Lexware";
+			WCHAR szGswin[MAX_PATH] = L"%CommonProgramFiles%\\" COMPANY_NAME;
 #endif
 			ULONG dwGswin = _countof(szGswin);
 
 			ATL::CRegKey key;
-			if (ERROR_SUCCESS == key.Open(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Lexware\\PrintMonitor", KEY_READ | KEY_WOW64_32KEY))
+			if (ERROR_SUCCESS == key.Open(HKEY_LOCAL_MACHINE, L"SOFTWARE\\" COMPANY_NAME "\\PrintMonitor", KEY_READ | KEY_WOW64_32KEY))
 			{
 				if (ERROR_SUCCESS == key.QueryStringValue(L"gswin", szGswin, &dwGswin))
 				{

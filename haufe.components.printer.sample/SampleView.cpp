@@ -14,8 +14,8 @@ IMPLEMENT_DYNCREATE(CSampleView, CRichEditView)
 
 BEGIN_MESSAGE_MAP(CSampleView, CRichEditView)
 	// Standard printing commands
-	ON_COMMAND_EX(ID_FILE_LEXWAREPDF, &OnFilePrintPdf)
-	ON_COMMAND_EX(ID_FILE_LEXWAREPDF_STRESS, &OnFilePrintPdfStress)
+	ON_COMMAND_EX(ID_FILE_GHOSTSCRIPTPDF, &OnFilePrintPdf)
+	ON_COMMAND_EX(ID_FILE_GHOSTSCRIPTPDF_STRESS, &OnFilePrintPdfStress)
 	ON_COMMAND_EX(ID_FILE_AMYUNIPDF, &OnFilePrintPdf)
 	ON_COMMAND_EX(ID_FILE_AMYUNIPDF_STRESS, &OnFilePrintPdfStress)
 	ON_COMMAND(ID_FILE_PRINT, &OnFilePrint)
@@ -63,7 +63,7 @@ void CSampleView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
 	if (pInfo->m_lpUserData)
 	{
 		ASSERT(pInfo->m_nJobNumber > 0);
-		ASSERT(pInfo->m_pPD->GetDeviceName() == L"Lexware PDF-Export 6");
+		ASSERT(pInfo->m_pPD->GetDeviceName() == COMPANY_NAME L" PDF-Export 6");
 
 		VERIFY(PrintMonitor::SetJobOptions(pInfo->m_nJobNumber, PrintMonitor::Default, m_csOutputPath));
 	//	VERIFY(PrintMonitor::SetJobOptions(pInfo->m_nJobNumber, PrintMonitor::PDFA, m_csOutputPath));
@@ -79,7 +79,7 @@ void CSampleView::OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo)
 	ATLASSERT(pInfo->m_nJobNumber == - 1);
 	__super::OnBeginPrinting(pDC, pInfo);
 
-	if (pInfo->m_pPD->GetDeviceName() == L"Lexware PDF-Export 6")
+	if (pInfo->m_pPD->GetDeviceName() == COMPANY_NAME L" PDF-Export 6")
 	{
 		if (!pInfo->m_bPreview && pInfo->m_bDirect)
 		{
@@ -87,9 +87,9 @@ void CSampleView::OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo)
 		}
 	}
 #ifdef DOCUMENTEVENT_LAST
-	else if (pInfo->m_pPD->GetDeviceName() == L"Lexware PDF-Export 5.5")
+	else if (pInfo->m_pPD->GetDeviceName() == COMPANY_NAME L" PDF-Export 5.5")
 	{
-		m_hAmyuni = ::PDFDriverInit("Lexware PDF-Export 5.5");
+		m_hAmyuni = ::PDFDriverInit(COMPANY_NAME " PDF-Export 5.5");
 		if (m_hAmyuni)
 		{
 			m_csOutputPath = CreateOutputPath();
@@ -124,7 +124,7 @@ void CSampleView::OnEndPrinting(CDC* pDC, CPrintInfo* pInfo)
 	if (!m_bStressTest && pInfo->m_bDirect && pInfo->m_bContinuePrinting)
 	{
 		ASSERT(!pInfo->m_bPreview);
-		if (pInfo->m_pPD->GetDeviceName() == L"Lexware PDF-Export 6")
+		if (pInfo->m_pPD->GetDeviceName() == COMPANY_NAME L" PDF-Export 6")
 		{
 			Log.Info(__FUNCTION__ " waiting..");
 			ATLVERIFY(PrintMonitor::WaitForJob(pInfo->m_nJobNumber));
@@ -182,7 +182,7 @@ void CSampleView::OnFilePrint()
 
 BOOL CSampleView::OnFilePrintPdf(UINT nId)
 {
-	if (theApp.SelectPrinter(nId == ID_FILE_LEXWAREPDF ? _T("Lexware PDF-Export 6") : _T("Lexware PDF-Export 5.5")))
+	if (theApp.SelectPrinter(nId == ID_FILE_GHOSTSCRIPTPDF ? _T(COMPANY_NAME " PDF-Export 6") : _T(COMPANY_NAME " PDF-Export 5.5")))
 	{
 		m_bPrintDirect = TRUE;
 		m_bStressTest = FALSE;
@@ -194,11 +194,11 @@ BOOL CSampleView::OnFilePrintPdf(UINT nId)
 
 BOOL CSampleView::OnFilePrintPdfStress(UINT nId)
 {
-	if (theApp.SelectPrinter(nId == ID_FILE_LEXWAREPDF_STRESS ? _T("Lexware PDF-Export 6") : _T("Lexware PDF-Export 5.5")))
+	if (theApp.SelectPrinter(nId == ID_FILE_GHOSTSCRIPTPDF_STRESS ? _T(COMPANY_NAME " PDF-Export 6") : _T(COMPANY_NAME " PDF-Export 5.5")))
 	{
 		m_bPrintDirect = TRUE;
 		m_bStressTest = TRUE;
-		::ShellExecute(NULL, _T("open"), _T("printui"), nId == ID_FILE_LEXWAREPDF_STRESS ? _T("/o /n\"Lexware PDF-Export 6\"") : _T("/o /n\"Lexware PDF-Export 5.5\""), NULL, SW_SHOW);
+		::ShellExecute(NULL, _T("open"), _T("printui"), nId == ID_FILE_GHOSTSCRIPTPDF_STRESS ? _T("/o /n\"" COMPANY_NAME " PDF-Export 6\"") : _T("/o /n\"" COMPANY_NAME " PDF-Export 5.5\""), NULL, SW_SHOW);
 
 		for (int i = 0; i < 10; i++)
 		{

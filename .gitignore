@@ -16,3 +16,4 @@ event*.bin
 mfilemon.zip
 haufe.components.printer (x64).sln
 haufe.components.printer (x86).sln
+haufe.components.printer.props

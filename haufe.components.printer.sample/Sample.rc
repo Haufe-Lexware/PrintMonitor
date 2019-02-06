@@ -87,8 +87,8 @@ BEGIN
         MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
         MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
         MENUITEM SEPARATOR
-        MENUITEM "Lexware PDF-Export",          ID_FILE_LEXWAREPDF
-        MENUITEM "Lexware PDF-Export (Stresstest)", ID_FILE_LEXWAREPDF_STRESS
+        MENUITEM "Ghostscript PDF-Export",      ID_FILE_GHOSTSCRIPTPDF
+        MENUITEM "Ghostscript PDF-Export (Stresstest)", ID_FILE_GHOSTSCRIPTPDF_STRESS
         MENUITEM SEPARATOR
         MENUITEM "Amyuni PDF-Export",           ID_FILE_AMYUNIPDF
         MENUITEM "Amyuni PDF-Export (Stresstest)", ID_FILE_AMYUNIPDF_STRESS

@@ -110,7 +110,7 @@ BOOL CSampleDoc::OnNewDocument()
 	if (CDocument::OnNewDocument())
 	{
 		LoadRtfDocument();
-		SetTitle(_T("Lexware PDF-Export Sample"));
+		SetTitle(_T(COMPANY_NAME " PDF-Export Sample"));
 
 		return TRUE;
 	}

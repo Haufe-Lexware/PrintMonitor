@@ -7,8 +7,8 @@
 #define IDR_MAINFRAME                   128
 #define IDR_SAMPLETYPE                  130
 #define IDR_RTF1                        311
-#define ID_FILE_LEXWAREPDF              32771
-#define ID_FILE_LEXWAREPDF_STRESS       32772
+#define ID_FILE_GHOSTSCRIPTPDF          32771
+#define ID_FILE_GHOSTSCRIPTPDF_STRESS   32772
 #define ID_FILE_AMYUNIPDF               32773
 #define ID_FILE_AMYUNIPDF_STRESS        32774
 
